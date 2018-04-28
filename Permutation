@@ -1,0 +1,26 @@
+public class Permutation
+{
+    public static void main (String[] args)
+    {
+       permutate("df");
+    }
+    
+    public static void permutate(String input)
+    {
+        if(input.length()==1)
+        {
+            System.out.printf(input);
+            return;
+        }
+        else
+        {           
+            for(int i=1; i<input.length();i++)
+            {
+                System.out.print(input.substring(i-1,i));
+                String sub = input.substring(0, i-1) + input.substring(i+1);
+                permutate(sub);
+            }
+        }
+        
+    }
+}
