@@ -1,25 +1,38 @@
+import java.util.ArrayList;
+
 public class Permutation
 {
-    public static void main (String[] args)
-    {
-       permutate("df");
-    }
+   private String word;
+   
+    public Permutation(String input)
+   {
+        word=input;
+   }
     
-    public static void permutate(String input)
+    public ArrayList<String> permutate()
     {
-        if(input.length()==1)
+        ArrayList<String> permutations = new ArrayList<String>();
+        
+        if(word.length()==1)
         {
-            System.out.printf(input);
-            return;
+            permutations.add(word);
+           
+            return permutations;
         }
         else
         {           
-            for(int i=1; i<input.length();i++)
+            for(int i=1; i<=word.length();i++)
             {
-                System.out.print(input.substring(i-1,i));
-                String sub = input.substring(0, i-1) + input.substring(i+1);
-                permutate(sub);
+                Permutation shortWord = new Permutation(word.substring(0, i-1) + word.substring(i));
+                ArrayList<String> shortWordPermutation = shortWord.permutate();
+                
+                for(String s:shortWordPermutation)
+                {
+                    permutations.add(word.charAt(i-1)+s);
+                }
             }
+            
+            return permutations;
         }
         
     }
